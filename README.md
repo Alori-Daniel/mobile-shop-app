@@ -1,56 +1,84 @@
-# Welcome to your Expo app 👋
+# Mobile Shop App (React Native Assessment)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native + Expo shopping app implementing a full product browsing and mock checkout flow using a live mock API.
 
-## Get started
+## API
 
-1. Install dependencies
+- Base URL: `https://6a0c4e365aa893e1015b7853.mockapi.io/api/v1`
+- Resource used: `/meals`, `/meals/:id`
 
-   ```bash
-   npm install
-   ```
+## Implemented Requirements
 
-2. Start the app
+- Product listing screen
+- Product detail screen
+- Search + filtering (all, discounted, top-rated, budget)
+- Add to cart
+- Cart with quantity controls and remove actions
+- Checkout screen with form validation
+- Mock payment + order creation
+- Order confirmation screen
+- Orders history screen
+- Loading/error/empty states
+- Persisted cart and orders using AsyncStorage
+- Tab navigation + stack navigation with Expo Router
 
-   ```bash
-   npx expo start
-   ```
+## Tech Stack
 
-In the output, you'll find options to open the app in a
+- Expo + React Native + TypeScript
+- Expo Router (tabs + stack)
+- React Query (remote data)
+- Zustand + AsyncStorage (local persisted state)
+- StyleSheet-based styling
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Project Structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- `src/app/(tabs)` - Home, Cart, Orders, Profile tabs
+- `src/app/product/[id].tsx` - Product details route
+- `src/app/checkout.tsx` - Checkout form + payment action
+- `src/app/orderConfirmation.tsx` - Success screen
+- `src/lib` - API + query client
+- `src/store` - Cart and order stores
+- `src/components` - Reusable UI components
+- `src/utils` - Pricing, formatting, validation helpers
 
-## Get a fresh project
+## Setup
 
-When you're ready, run:
+1. Install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Start app:
 
-### Other setup steps
+```bash
+npm run start
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+3. Run checks:
 
-## Learn more
+```bash
+npx tsc --noEmit
+npm run lint
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Architecture Notes
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Remote data is fetched through React Query hooks (`useMealsQuery`, `useMealQuery`) and typed in `src/types`.
+- Cart and orders use Zustand with `persist` middleware and AsyncStorage.
+- Checkout validates `fullName`, `email`, `phone`, `addressLine`, `city`, and `postalCode` before order creation.
+- Pricing helpers (`src/utils/cart.ts`) centralize discount and totals calculations for consistency across Home, Cart, and Checkout.
 
-## Join the community
+## Navigation Map
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Stack:
+  - `index` (splash)
+  - `(tabs)`
+  - `product/[id]`
+  - `checkout`
+  - `orderConfirmation`
+- Tabs:
+  - `home`
+  - `cart`
+  - `orders`
+  - `profile`
