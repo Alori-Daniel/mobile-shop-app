@@ -1,10 +1,20 @@
-import { StyleSheet, Text, View } from "react-native";
+import { router, Stack } from "expo-router";
+import { useEffect } from "react";
+import { StyleSheet } from "react-native";
 
 const _layout = () => {
+  useEffect(() => {
+    setTimeout(() => {
+      //@ts-ignore
+      router.push("(tabs)/home");
+    }, 2000);
+  }, []);
+
   return (
-    <View>
-      <Text>_layout</Text>
-    </View>
+    <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    </Stack>
   );
 };
 
