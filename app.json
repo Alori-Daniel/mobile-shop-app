@@ -4,18 +4,18 @@
     "slug": "mobile-shop-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    // "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/shopLogo.png",
     "scheme": "mobileshopapp",
     "userInterfaceStyle": "automatic",
     "ios": {
-      // "icon": "./assets/expo.icon"
+      "icon": "./assets/images/shopLogo.png"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE"
-        // "foregroundImage": "./assets/images/android-icon-foreground.png",
-        // "backgroundImage": "./assets/images/android-icon-background.png",
-        // "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/images/shopLogo.png",
+        "backgroundImage": "./assets/images/shopLogo.png",
+        "monochromeImage": "./assets/images/shopLogo.png"
       },
       "predictiveBackGestureEnabled": false
     },
@@ -30,7 +30,7 @@
         {
           "backgroundColor": "#208AEF",
           "android": {
-            // "image": "./assets/images/splash-icon.png",
+            "image": "./assets/images/shopLogo.png",
             "imageWidth": 76
           }
         }
