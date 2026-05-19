@@ -24,14 +24,24 @@ const ProductCard = ({ meal, onPress, onAddToCart }: ProductCardProps) => {
           <Text style={styles.name} numberOfLines={1}>
             {meal.name}
           </Text>
-          <Text style={styles.rating}>Rating: {getRatingOutOfFive(meal.rating)}/5</Text>
+          <Text style={styles.rating}>
+            Rating: {getRatingOutOfFive(meal.rating)}/5
+          </Text>
 
           <View style={styles.priceRow}>
-            <Text style={styles.currentPrice}>{formatCurrency(discountedPrice)}</Text>
-            {meal.discount > 0 ? <Text style={styles.discount}>{meal.discount}% off</Text> : null}
+            <Text style={styles.currentPrice}>
+              {formatCurrency(discountedPrice)}
+            </Text>
+            {meal.discount > 0 ? (
+              <Text style={styles.discount}>{meal.discount}% off</Text>
+            ) : null}
           </View>
 
-          {meal.discount > 0 ? <Text style={styles.originalPrice}>{formatCurrency(meal.price)}</Text> : null}
+          {meal.discount > 0 ? (
+            <Text style={styles.originalPrice}>
+              {formatCurrency(meal.price)}
+            </Text>
+          ) : null}
         </View>
       </Pressable>
 
@@ -96,7 +106,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 12,
     marginBottom: 12,
     borderRadius: 10,
-    backgroundColor: "#111827",
+    backgroundColor: "purple",
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 10,

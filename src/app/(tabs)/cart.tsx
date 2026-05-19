@@ -47,14 +47,20 @@ const Cart = () => {
           return (
             <View style={styles.cartItem}>
               <View style={styles.imageContainer}>
-                <ProductImage uri={item.product.image} label={item.product.name} height={72} />
+                <ProductImage
+                  uri={item.product.image}
+                  label={item.product.name}
+                  height={72}
+                />
               </View>
 
               <View style={styles.itemDetails}>
                 <Text style={styles.itemName} numberOfLines={1}>
                   {item.product.name}
                 </Text>
-                <Text style={styles.itemPrice}>{formatCurrency(discountedPrice)}</Text>
+                <Text style={styles.itemPrice}>
+                  {formatCurrency(discountedPrice)}
+                </Text>
 
                 <View style={styles.itemControls}>
                   <QuantityStepper
@@ -75,18 +81,25 @@ const Cart = () => {
       <View style={styles.summaryCard}>
         <View style={styles.summaryRow}>
           <Text style={styles.summaryLabel}>Subtotal</Text>
-          <Text style={styles.summaryValue}>{formatCurrency(totals.subtotal)}</Text>
+          <Text style={styles.summaryValue}>
+            {formatCurrency(totals.subtotal)}
+          </Text>
         </View>
         <View style={styles.summaryRow}>
           <Text style={styles.summaryLabel}>Discount</Text>
-          <Text style={[styles.summaryValue, styles.discountValue]}>-{formatCurrency(totals.discountTotal)}</Text>
+          <Text style={[styles.summaryValue, styles.discountValue]}>
+            -{formatCurrency(totals.discountTotal)}
+          </Text>
         </View>
         <View style={styles.summaryRow}>
           <Text style={styles.totalLabel}>Total</Text>
           <Text style={styles.totalValue}>{formatCurrency(totals.total)}</Text>
         </View>
 
-        <Pressable style={styles.checkoutButton} onPress={() => router.push("/checkout")}>
+        <Pressable
+          style={styles.checkoutButton}
+          onPress={() => router.push("/checkout")}
+        >
           <Text style={styles.checkoutText}>Proceed To Checkout</Text>
         </Pressable>
       </View>
@@ -192,7 +205,7 @@ const styles = StyleSheet.create({
   checkoutButton: {
     marginTop: 6,
     borderRadius: 12,
-    backgroundColor: "#0F172A",
+    backgroundColor: "purple",
     alignItems: "center",
     paddingVertical: 14,
   },
