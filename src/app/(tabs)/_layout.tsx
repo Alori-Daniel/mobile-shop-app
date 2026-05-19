@@ -4,34 +4,34 @@ import React from "react";
 import { Platform, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const _layout = () => {
+import { useCartStore } from "@/store/cartStore";
+
+const TabsLayout = () => {
   const insets = useSafeAreaInsets();
+  const cartItemCount = useCartStore((state) =>
+    state.items.reduce((count, item) => count + item.quantity, 0),
+  );
+
   return (
     <Tabs
       screenOptions={{
         tabBarLabelPosition: "below-icon",
-
-        tabBarActiveTintColor: "Purple",
-        tabBarInactiveTintColor: "grey",
+        tabBarActiveTintColor: "#0F172A",
+        tabBarInactiveTintColor: "#64748B",
         tabBarStyle: {
           paddingHorizontal: 10,
-          height: Platform.OS === "android" ? 55 + insets.bottom : 80,
+          height: Platform.OS === "android" ? 58 + insets.bottom : 86,
           alignItems: "center",
           borderTopWidth: StyleSheet.hairlineWidth,
+          borderTopColor: "#CBD5E1",
         },
         tabBarLabelStyle: {
-          fontSize: 13,
+          fontSize: 12,
+          fontWeight: "600",
         },
         tabBarItemStyle: {
           justifyContent: "center",
           alignItems: "center",
-          borderWidth: 0,
-          height: 60,
-        },
-        // and center just the icon
-        tabBarIconStyle: {
-          alignSelf: "center",
-          marginTop: 0,
         },
       }}
     >
@@ -39,9 +39,7 @@ const _layout = () => {
         name="home"
         options={{
           title: "Home",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home-outline" color={color} size={22} />
-          ),
+          tabBarIcon: ({ color }) => <Ionicons name="home-outline" color={color} size={22} />,
           headerShown: false,
         }}
       />
@@ -49,31 +47,24 @@ const _layout = () => {
         name="cart"
         options={{
           title: "Cart",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="cart-outline" color={color} size={22} />
-          ),
+          tabBarIcon: ({ color }) => <Ionicons name="cart-outline" color={color} size={22} />,
+          tabBarBadge: cartItemCount > 0 ? cartItemCount : undefined,
           headerShown: false,
         }}
       />
-
       <Tabs.Screen
         name="orders"
         options={{
           title: "Orders",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="receipt-outline" color={color} size={22} />
-          ),
+          tabBarIcon: ({ color }) => <Ionicons name="receipt-outline" color={color} size={22} />,
           headerShown: false,
         }}
       />
-
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-outline" color={color} size={22} />
-          ),
+          tabBarIcon: ({ color }) => <Ionicons name="person-outline" color={color} size={22} />,
           headerShown: false,
         }}
       />
@@ -81,6 +72,4 @@ const _layout = () => {
   );
 };
 
-export default _layout;
-
-const styles = StyleSheet.create({});
+export default TabsLayout;

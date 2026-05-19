@@ -1,18 +1,34 @@
+import { queryClient } from "@/lib/queryClient";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
-import { StyleSheet } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-const _layout = () => {
+const RootLayout = () => {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="(tabs)"
-        options={{ headerShown: false, animation: "fade" }}
-      />
-    </Stack>
+    <SafeAreaProvider>
+      <QueryClientProvider client={queryClient}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="(tabs)"
+            options={{ headerShown: false, animation: "fade" }}
+          />
+          <Stack.Screen
+            name="(screens)/product/[id]"
+            options={{ title: "Product Details", headerBackTitle: "Home" }}
+          />
+          <Stack.Screen
+            name="(screens)/checkout"
+            options={{ title: "Checkout", presentation: "modal" }}
+          />
+          <Stack.Screen
+            name="(screens)/orderConfirmation"
+            options={{ title: "Order Confirmation", headerLeft: () => null }}
+          />
+        </Stack>
+      </QueryClientProvider>
+    </SafeAreaProvider>
   );
 };
 
-export default _layout;
-
-const styles = StyleSheet.create({});
+export default RootLayout;
