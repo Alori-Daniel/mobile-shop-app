@@ -82,3 +82,6 @@ npm run lint
   - `cart`
   - `orders`
   - `profile`
+
+ ##Screen Recorded Preview
+- Screen recorded preview can be viewed in Preview.mp4
