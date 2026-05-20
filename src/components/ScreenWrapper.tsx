@@ -25,7 +25,7 @@ const ScreenWrapper = ({
 
   const basePadding = {
     paddingTop: insets.top,
-    paddingBottom: insets.bottom,
+    // paddingBottom: insets.bottom,
     paddingHorizontal: 16,
   };
 
@@ -33,7 +33,11 @@ const ScreenWrapper = ({
     return (
       <ScrollView
         style={[styles.container, style]}
-        contentContainerStyle={[styles.scrollContent, basePadding, contentContainerStyle]}
+        contentContainerStyle={[
+          styles.scrollContent,
+          basePadding,
+          contentContainerStyle,
+        ]}
         keyboardShouldPersistTaps="handled"
       >
         {children}
